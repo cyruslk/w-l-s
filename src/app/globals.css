@@ -1,5 +1,7 @@
 body{
   margin: 0;
+  overflow-x: hidden;
+
 }
 
 .typewriter_main h1{
@@ -79,17 +81,38 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: black;
 }
+
+
+.footer_inner h1,
+.footer_inner p{
+  color: white;
+  font-weight: 300;
+}
+
+
 
 .footer_inner{
   width: 94vw;
   display: flex;
   align-items: baseline;
+  margin-top: 3vw;
+  margin-bottom: 3vw;
 } 
 
 
 .footer_inner div{
   width: 50%;
+}
+
+.footer_inner div:first-child{
+  border-right: 1px solid white;
+}
+
+
+.footer_inner div:last-child{
+  margin-left: 3vw;
 }
 
 
@@ -135,6 +158,13 @@ slick-slider .slick-track,
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+}
+
+.manifesto_image_outer img{
+  width: 96vw;
+  margin-top: 3vw;
+  margin-bottom: 3vw;
 }
 
 .manifesto_inner{
@@ -146,6 +176,7 @@ slick-slider .slick-track,
   font-weight: 300;
   margin-top: 3vw;
   margin-bottom: 3vw;
+  margin-left: 2vw;
 }
 
 .manifesto_inner_body{

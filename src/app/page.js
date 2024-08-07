@@ -1,5 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import Carousel from './components/Carousel';
 import Typewriter from './components/Typewriter';
@@ -51,8 +52,6 @@ export default function Home() {
   ]
   
 
-  
-  
   const sentences = [
     "Wretched Lab Studio (WLS) operates between Switzerland and Ghana.",
     'It spans social science, arts, and design',
@@ -79,6 +78,7 @@ export default function Home() {
           left="auto"
           right="20px"
           position="fixed"
+          appearScrollPercent={30}    // Appear after 30% scroll
           disappearScrollPercent={60} // Disappears after 60% of the page is scrolled
         />;
 
@@ -90,6 +90,7 @@ export default function Home() {
           left="60%"
           right="auto"
           position="fixed"
+          appearScrollPercent={50}    // Appear after 30% scroll
           disappearScrollPercent={80} // Disappears after 80% of the page is scrolled
         />;
 
@@ -101,6 +102,7 @@ export default function Home() {
             left="30px"
             right="auto"
             position="fixed"
+            appearScrollPercent={10}    // Appear after 30% scroll
             disappearScrollPercent={30} // Disappears after 30% of the page is scrolled
           />;
 
@@ -142,8 +144,24 @@ export default function Home() {
     return (
       <footer className='footer_outer'>
         <section className='footer_inner'>
-          <div>vdvfd</div>
-          <div>vdvfd</div>
+          <div>
+            <h1>Kumasi, Ghana</h1>
+            <p>
+            Adom House
+            45 Abena Circle
+            Ahodwo, Kumasi
+            Ashanti Region, Ghana
+            </p>
+          </div>
+          <div>
+            <h1>Geneva, Switzerland</h1>
+            <p>
+            Address:
+            Rue de la Paix 12
+            1201 Geneva
+            Geneva, Switzerland
+            </p>
+          </div>
         </section>
       </footer>
     )
@@ -167,7 +185,9 @@ export default function Home() {
               </div>
               </div>
           </div>
-          <img src="/portrait-wls.jpg" />
+          <div className='manifesto_image_outer'>
+            <img src="/images/portrait-wls.jpg" />
+          </div>
       </section>
     )
   }

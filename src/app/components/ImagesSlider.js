@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-const ImagesSlider = ({ images, width, interval, top, left, right, position, disappearScrollPercent }) => {
+const ImagesSlider = ({
+  images,
+  width,
+  interval,
+  top,
+  left,
+  right,
+  position,
+  appearScrollPercent,
+  disappearScrollPercent,
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false); // Start with the component hidden
 
   useEffect(() => {
     // Set interval for changing images
@@ -19,9 +29,9 @@ const ImagesSlider = ({ images, width, interval, top, left, right, position, dis
   useEffect(() => {
     const handleScroll = () => {
       const scrolledPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      
-      // Show the component if scrolled above the disappear percentage
-      if (scrolledPercent < disappearScrollPercent) {
+
+      // Show the component if scrolled above the appear percentage
+      if (scrolledPercent >= appearScrollPercent && scrolledPercent < disappearScrollPercent) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -33,9 +43,9 @@ const ImagesSlider = ({ images, width, interval, top, left, right, position, dis
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [disappearScrollPercent]);
+  }, [appearScrollPercent, disappearScrollPercent]);
 
-  if (!isVisible) return null; // Hide component if it's no longer visible
+  if (!isVisible) return null; // Hide component if it's not visible
 
   return (
     <div
@@ -60,7 +70,8 @@ ImagesSlider.propTypes = {
   top: PropTypes.string,
   left: PropTypes.string,
   right: PropTypes.string,
-  position: PropTypes.oneOf(['fixed', 'absolute']), // Either 'fixed' or 'absolute'
+  position: PropTypes.oneOf(['fixed', 'absolute']),
+  appearScrollPercent: PropTypes.number,    // Percentage of scroll to trigger appearance
   disappearScrollPercent: PropTypes.number, // Percentage of scroll to trigger disappearance
 };
 
@@ -71,7 +82,8 @@ ImagesSlider.defaultProps = {
   left: 'auto',
   right: '10px',
   position: 'absolute',
-  disappearScrollPercent: 50, // Disappear after 50% of the page is scrolled by default
+  appearScrollPercent: 20,    // Appear after 20% of the page is scrolled by default
+  disappearScrollPercent: 80, // Disappear after 80% of the page is scrolled by default
 };
 
 export default ImagesSlider;
